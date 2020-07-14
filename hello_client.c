@@ -29,7 +29,7 @@ int main(int argc, char *argv[]){
     serv_addr.sin_addr.s_addr=inet_addr(argv[1]);
     serv_addr.sin_port=htons(atoi(argv[2]));
 
-    if(bind(sock, (struct sockaadr*)&serv_addr, sizeof(serv_addr))==-1)
+    if(connect(sock, (struct sockaadr*)&serv_addr, sizeof(serv_addr))==-1)
         error_handling("connect() error");
     
     str_len = read(sock, message, sizeof(message)-1);
@@ -41,7 +41,7 @@ int main(int argc, char *argv[]){
     return 0;
 }
 
-void error_binding(char *message){
+void error_handling(char *message){
     fputs(message, stderr);
     fputc('\n',stderr);
     exit(1);

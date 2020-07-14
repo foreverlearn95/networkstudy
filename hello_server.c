@@ -14,7 +14,7 @@ int main(int argc, char *argv[]){
 
     struct sockaddr_in serv_addr;
     struct sockaddr_in clnt_addr;
-    socklent_t clnt_addr_size;
+    socklen_t clnt_addr_size;
 
     char message[]="Hello world!";
 
@@ -35,7 +35,7 @@ int main(int argc, char *argv[]){
     serv_addr.sin_addr.s_addr=htonl(INADDR_ANY);
     serv_addr.sin_port=htons(atoi(argv[1]));
 
-    if(bind(serv_sock, (struct sockaadr*) &serv_addr, sizeof(serv_addr))==-1)
+    if(bind(serv_sock, (struct sockaddr*) &serv_addr, sizeof(serv_addr))==-1)
         error_handling("bind() error");
     if(listen(serv_sock,5)==-1) //연결요청 및 연결하면 받아들일 
         error_handling("listen() error");
@@ -54,7 +54,7 @@ int main(int argc, char *argv[]){
     return 0;
 }
 
-void error_binding(char *message){
+void error_handling(char *message){
     fputs(message, stderr);
     fputc('\n',stderr);
     exit(1);
