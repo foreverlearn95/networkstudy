@@ -17,7 +17,7 @@ int main(void){
 
     if(read(fd, buf, sizeof(buf))==-1)
         error_handling("read() error!");
-    prinf("file data: %s", buf);
+    printf("file data: %s", buf);
     close(fd);
     return 0;
 }
